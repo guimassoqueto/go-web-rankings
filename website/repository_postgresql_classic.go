@@ -73,7 +73,7 @@ func (r *PostgresSQLClassicRepository) All(ctx context.Context) ([]Website, erro
 
 
 func (r *PostgresSQLClassicRepository) GetByName(ctx context.Context, name string) (*Website, error) {
-	row := r.db.QueryRowContext(ctx, "SELECT * FROM website WHERE name = $1", name)
+	row := r.db.QueryRowContext(ctx, "SELECT * FROM websites WHERE name = $1", name)
 	var website Website
 	if err := row.Scan(&website.ID, &website.Name, &website.URL, &website.Rank); err != nil {
 		if errors.Is(err, sql.ErrNoRows) {
