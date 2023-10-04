@@ -8,10 +8,11 @@ import (
 
 	"github.com/guimassoqueto/go-web-rankings/app"
 	"github.com/guimassoqueto/go-web-rankings/website"
+	_ "github.com/lib/pq"
 )
 
 func main() {
-	db, err := sql.Open("pgx", "postgres://postgres:password@localhost:5432/website")
+	db, err := sql.Open("postgres", "postgres://postgres:password@localhost:5432/website?sslmode=disable")
 	if err != nil {
 		log.Fatal(err)
 	}
