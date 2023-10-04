@@ -9,5 +9,19 @@ Go Web rankings is a simple web application responsible to rank websites. The ma
 
 ### How To Run
 
+1. Init the postgres container
+```shell
+make db
+```
+
+2. Run the application
+```shell
+make run
+```
 
 ### Folder Structure
+
+
+### Concepts to Understand
+* "context" library
+* "errors" library (specally *errors.Is* and *errors.As*)
