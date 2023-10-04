@@ -23,7 +23,10 @@ make db
       ```shell
       make run-pgx
       ```
-
+  * To run using the gorm driver ("gorm.io/gorm"):
+      ```shell
+      make run-gorm
+      ```
 ### Folder Structure
 
 
