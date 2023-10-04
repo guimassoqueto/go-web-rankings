@@ -14,6 +14,7 @@ func RunRepositoryDemo(ctx context.Context, websiteRepository website.Repository
 	if err := websiteRepository.Migrate(ctx); err != nil {
 		log.Fatal(err)
 	}
+	fmt.Printf("MIGRATION SUCCEED\n\n")
 
 	fmt.Println("2. CREATE RECORDS OF REPOSITORY")
 	facebookWebsite := website.Website{
@@ -31,6 +32,7 @@ func RunRepositoryDemo(ctx context.Context, websiteRepository website.Repository
 		URL: "https://google.com/",
 		Rank: 1,
 	}
+	fmt.Printf("RECORDS CREATED\n\n")
 
 	// tenta adicionar facebook no banco
 	createdFacebookWebSite, err := websiteRepository.Create(ctx, facebookWebsite)
@@ -60,7 +62,7 @@ func RunRepositoryDemo(ctx context.Context, websiteRepository website.Repository
 	}
 
 	// retorna os 4 websites inseridos em caso de sucesso
-	fmt.Println("SUCCESS ON WEBSITE CREATION")
+	fmt.Printf("WEBSITES ADDED \n\n")
 	fmt.Printf("%+v\n%+v\n%+v\n", createdFacebookWebSite, createdYoutubeWebSite, createdGoogleWebSite)
 
 	// tenta buscar o facebook recém inserido no banco de dados
@@ -71,7 +73,7 @@ func RunRepositoryDemo(ctx context.Context, websiteRepository website.Repository
 	} else if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println("SUCCESS ON RETRIEVING FACEBOOK FROM DATABASE")
+	fmt.Printf("SUCCESS ON RETRIEVING FACEBOOK FROM DATABASE\n\n")
 	fmt.Printf("%+v\n", gotFacebookWebsite)
 
 	// tenta atualizar um website
@@ -86,7 +88,7 @@ func RunRepositoryDemo(ctx context.Context, websiteRepository website.Repository
 			log.Fatal(err)
 		}
 	}
-	fmt.Println("SUCCESS ON UPDATING FACEBOOK -> INSTAGRAM ON DATABASE")
+	fmt.Printf("SUCCESS ON UPDATING FACEBOOK -> INSTAGRAM ON DATABASE\n\n")
 
 	// tenta pegar todos os websites do banco
 	fmt.Println("5. GET ALL")
@@ -98,7 +100,7 @@ func RunRepositoryDemo(ctx context.Context, websiteRepository website.Repository
 	for _, website := range all{
 		fmt.Printf("%+v\n", website)
 	}
-	fmt.Println("SUCCESS ON GETTING ALL THE WEBSITES")
+	fmt.Printf("SUCCESS ON GETTING ALL THE WEBSITES\n\n")
 	
 	// tenta excluir um website do banco
 	fmt.Println("5. DELETE FACEBOOK (NOW INSTAGRAM) FROM DATABASE")
@@ -109,8 +111,10 @@ func RunRepositoryDemo(ctx context.Context, websiteRepository website.Repository
 			log.Fatal(err)
 		}
 	}
+	fmt.Printf("SUCCESS ON DELETING SINGLE DATA\n\n")
 
 	// busca novamente todos os websites
+	fmt.Println("6. GET ALL")
 	all, err = websiteRepository.All(ctx)
 	if err != nil {
 		log.Fatal(err)
@@ -118,4 +122,6 @@ func RunRepositoryDemo(ctx context.Context, websiteRepository website.Repository
 	for _, website := range all {
 		fmt.Printf("%+v\n", website)
 	}
+	fmt.Printf("SUCCESS ON GETTING ALL THE WEBSITES\n\n")
+	fmt.Println("DONE. PLASE TRUNCATE THE TABLE websites BEFORE RUNNING THIS APP AGAIN")
 }
