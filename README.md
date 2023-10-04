@@ -14,10 +14,15 @@ Go Web rankings is a simple web application responsible to rank websites. The ma
 make db
 ```
 
-2. Run the application
-```shell
-make run
-```
+2. You can run the app using any of two postgres drivers (concrete dependencies). Choice one:
+  * To run using the classic driver ("database/sql"):
+      ```shell
+      make run-classic
+      ```
+  * To run using the psx driver ("pgx/v4/pgxpool"):
+      ```shell
+      make run-pgx
+      ```
 
 ### Folder Structure
 
