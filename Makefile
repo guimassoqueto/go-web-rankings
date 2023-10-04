@@ -7,5 +7,8 @@ run-classic:
 run-pgx:
 	go run cmd/pgx/main.go
 
+run-gorm:
+	go run cmd/gorm/main.go
+
 or:
 	open https://github.com/guimassoqueto/go-web-rankings
